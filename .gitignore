@@ -1,3 +1,5 @@
 /structure-data/bin/*
 
 /structure-data/obj/*
+
+/structure-data/*.exe
