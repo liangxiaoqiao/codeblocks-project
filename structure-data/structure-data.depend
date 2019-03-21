@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1553131092 source:f:\codeblocks-project\structure-data\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1553091001 source:f:\codeblocks-project\structure-data\extern_test.c
+	<stdio.h>
+	<stdlib.h>
+
