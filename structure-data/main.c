@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
-//³£Á¿ Ô¤´¦ÀíÆ÷¶¨Òå³£Á¿ĞÎÊ½
+//å¸¸é‡ é¢„å¤„ç†å™¨å®šä¹‰å¸¸é‡å½¢å¼
 #define LENGTH 10
 #define WIDTH  5
 #define NEWLINE '\n'
@@ -10,15 +11,15 @@ extern int extern_function();
 
 void print_const() {
     printf("Const define1 is : %d\n", LENGTH * WIDTH);
-    //³£Á¿  const×Ô¶¨Òå
+    //å¸¸é‡  constè‡ªå®šä¹‰
     const int LENGHT2 = 3;
     const int WIDTH2 = 2;
     printf("Const int is : %d\n", LENGHT2*WIDTH2);
 }
 
-//º¯Êı ÉùÃ÷
+//å‡½æ•° å£°æ˜
 int func();
-//º¯Êı ÊµÏÖ
+//å‡½æ•° å®ç°
 int func() {
     printf("My Function.\n");
     return 1;
@@ -43,32 +44,49 @@ void print_array(int *param, int len) {
 }
 
 int * myFunction() {
-    int r[5] = {2,3,4,5,6};
+    // å¦‚æœæ˜¯æ™®é€šå˜é‡ï¼Œæ–¹æ³•ç»“æŸï¼Œåœ°å€å›æ”¶ï¼Œæ‰€ä»¥æ‹¿ä¸åˆ°æŒ‡é’ˆåœ°å€äº†
+    static int r[5] = {2,3,4,5,6};
     printf("array address:%x\n",&r);
     printf("0 address:%x\n",&r[0]);
     printf("1 address:%x\n",&r[1]);
 
-    return &r;
+    return r;
 }
 
 void point_array() {
     int  var[] = {10, 100, 200};
     int  i, *ptr;
 
-    /* Ö¸ÕëÖĞµÄÊı×éµØÖ· */
+    /* æŒ‡é’ˆä¸­çš„æ•°ç»„åœ°å€ */
     ptr = var;
     for ( i = 0; i < 3; i++) {
         printf("Address of var[%d] = %x\n", i, ptr );
         printf("Value of var[%d] = %d\n", i, *ptr );
-        /* ÒÆ¶¯µ½ÏÂÒ»¸öÎ»ÖÃ */
+        /* ç§»åŠ¨åˆ°ä¸‹ä¸€ä¸ªä½ç½® */
         ptr++;
     }
-    return 0;
+}
+
+int * getRandom( )
+{
+  static int  r[10];
+  int i;
+ 
+  /* è®¾ç½®ç§å­ */
+  srand( (unsigned)time( NULL ) );
+  for ( i = 0; i < 10; ++i)
+  {
+     r[i] = rand();
+     printf( "r[%d] = %d\n", i, r[i]);
+ 
+  }
+ 
+  return r;
 }
 
 int main() {
     printf("Hello world!\n");
-    //º¯Êı µ÷ÓÃ
+    //å‡½æ•° è°ƒç”¨
     int fu = func();
     printf("Function is %d",fu);
     print_const();
@@ -82,7 +100,8 @@ int main() {
     int *p;
     p = myFunction();
     printf("return array:%x\n",&p);
-    for ( int i = 0; i < 5; i++ ) {
+    int i;
+    for (i = 0; i < 5; i++ ) {
        printf( "*(p + %d) : %d\n", i, *(p+i));
     }
     point_array();
